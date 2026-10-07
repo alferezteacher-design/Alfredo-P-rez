@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-sena-green: #39a900;
+  --color-sena-dark: #00324d;
+  --color-sena-deep: #0d3e1a;
+}
+
+@layer base {
+  html, body {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Blur transition effect when switching theme */
+.theme-blur-active {
+  filter: blur(14px) saturate(1.2);
+  transform: scale(0.995);
+  transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.theme-blur-idle {
+  filter: blur(0px) saturate(1);
+  transform: scale(1);
+  transition: filter 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s ease, opacity 0.45s ease;
+}
+
+/* Custom scrollbar and print styles */
+@media print {
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+
